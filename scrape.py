@@ -8,7 +8,7 @@ page_response = requests.get(page_link, timeout=5)
 
 soup = BeautifulSoup(page_response.content, "html.parser")
 
-#print(str(page_content))
+#print(str(soup))
 
 address_list = []
 price_list = []
@@ -21,19 +21,37 @@ price_list = []
 #address_list.append(this_address)
 #price_list.append(this_price)
 #print([item["data-address"] for item in page_content.find_all('div', attrs={'class': 'property-card', "data-address": True})])
-my_addresses = soup.findAll('div', attrs={'class': 'property-address'})
-my_prices = soup.findAll('a', attrs={'class': 'listing-price'})
-my_beds = soup.findAll('div', attrs={'class': 'property-beds'})
+
+#these work but we want a single object
+#my_addresses = soup.findAll('div', attrs={'class': 'property-address'})
+#my_prices = soup.findAll('a', attrs={'class': 'listing-price'})
+#my_beds = soup.findAll('div', attrs={'class': 'property-beds'})
 
 #print(my_addresses[0].text)
 #print(my_addresses[1].text)
 
-print(str(len(my_addresses)) + '; ' + str(len(my_prices)) + '; ' +  str(len(my_beds)))
-for i in range(0, len(my_addresses)):
-	#print(my_addresses[i].text +', ' +  my_prices[i].text + my_beds[i].text)
-	address_list.append(my_addresses[i])
+#print(str(len(my_addresses)) + '; ' + str(len(my_prices)) + '; ' +  str(len(my_beds)))
+#for i in range(0, len(my_addresses)):
+#	#print(my_addresses[i].text +', ' +  my_prices[i].text + my_beds[i].text)
+#	address_list.append(my_addresses[i])
 
-my_results = soup.findAll('div', attr={'class':'property-card-primary-info'})
-print(str(len(my_results)))
-
+my_results = soup.findAll('div', attrs={'class':'property-card-primary-info'})
+#print(str(my_results))
+for i in range(0, len(my_results)):
+	price = my_results[i].find('a', attrs={'class': 'listing-price'})
+	bed = my_results[i].find('div', attrs={'class': 'property-beds'})
+	address = my_results[i].find('div', attrs={'class': 'property-address'})
+	if price is not None:
+		price = price.text.strip()
+	else:
+		price = ""
+	if bed is not None:
+		bed = bed.text.strip()
+	else: 
+		bed = ""
+	if address is not None:
+		address = address.text.strip()
+	else:
+		address = ""
+	print(str(price) + '; ' +  str(address) + '; ' + str(bed) +  '; ')
 

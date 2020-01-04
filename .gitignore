@@ -1,4 +1,4 @@
 .env
-airflow_home
 airflow.cfg
 airflow.cfg.bak
+airflow.db

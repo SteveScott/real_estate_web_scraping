@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
+import re
 
 
 class Scrape:
@@ -42,6 +43,7 @@ class Scrape:
             price = my_results[i].find('a', attrs={'class': 'listing-price'})
             bed = my_results[i].find(
                     'div', attrs={'class': 'property-beds'})
+            bed_int = 0
             address = my_results[i].find(
                     'div', attrs={'class': 'property-address'})
             if price is not None:
@@ -50,17 +52,20 @@ class Scrape:
                 price = ""
             if bed is not None:
                 bed = bed.text.strip()
+                #bed = [int(s) for s in str.split() if s.isdigit()][0]
+                bed_int = re.findall(r'\d+', bed)[0]
             else:
-                bed = ""
+                bed_int = 0
             if address is not None:
                 address = address.text.strip()
             else:
                 address = ""
             #print(str(price) + '; ' +  str(address) + '; ' + str(bed) +  '; ')
 
-            raw_rows.append([price, address, bed])
+            raw_rows.append([price, address, bed_int])
 
         # Create dataframe.
         df = pd.DataFrame(raw_rows, columns=['Price', 'Address', 'Bed'])
+        df['Price'] = df['Price'].replace('[\$,]', '', regex=True).astype(float)
         #print(df.info)
         return(df)

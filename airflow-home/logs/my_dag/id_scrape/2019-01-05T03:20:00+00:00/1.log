@@ -1,1 +1,0 @@
-[2020-01-04 19:04:51,572] {taskinstance.py:655} INFO - Dependencies all met for <TaskInstance: my_dag.id_scrape 2019-01-05T03:20:00+00:00 [queued]>

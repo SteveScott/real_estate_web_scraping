@@ -1,7 +1,5 @@
 import sys
-sys.path.append("..")
-sys.path.append("..")
-import scrape
+sys.path.append("../..")
 import scrape_for_dag
 from db_import_for_dag import puller
 from db_insert import insert_df

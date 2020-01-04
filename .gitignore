@@ -2,3 +2,8 @@
 airflow.cfg
 airflow.cfg.bak
 airflow.db
+logs
+*.swp
+*.save*
+*.bck
+

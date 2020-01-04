@@ -9,7 +9,7 @@ class Scrape:
     def __init__(self):
         print("new Scraper")
 
-    def scrape(self):
+    def scrape(self, **kwargs):
         #page_link  = 'https://www.zillow.com/manhattan-new-york-ny-10007/?searchQueryState={%22pagination%22:{},%22usersSearchTerm%22:%2210007%22,%22mapBounds%22:{%22west%22:-74.01448844714355,%22east%22:-74.00024055285644,%22south%22:40.710634221558685,%22north%22:40.716166870622764},%22regionSelection%22:[{%22regionId%22:61621,%22regionType%22:7}],%22isMapVisible%22:true,%22mapZoom%22:17,%22filterState%22:{%22isAllHomes%22:{%22value%22:true}},%22isListVisible%22:true}'
 
         # Century 21 doesn't have captcha

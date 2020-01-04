@@ -1,0 +1,30 @@
+[2020-01-04 18:56:09,777] {taskinstance.py:655} INFO - Dependencies all met for <TaskInstance: my_dag.id_scrape 2019-01-04T18:00:00+00:00 [queued]>
+[2020-01-04 18:56:09,881] {taskinstance.py:655} INFO - Dependencies all met for <TaskInstance: my_dag.id_scrape 2019-01-04T18:00:00+00:00 [queued]>
+[2020-01-04 18:56:09,881] {taskinstance.py:866} INFO - 
+--------------------------------------------------------------------------------
+[2020-01-04 18:56:09,882] {taskinstance.py:867} INFO - Starting attempt 1 of 1
+[2020-01-04 18:56:09,882] {taskinstance.py:868} INFO - 
+--------------------------------------------------------------------------------
+[2020-01-04 18:56:09,968] {taskinstance.py:887} INFO - Executing <Task(PythonOperator): id_scrape> on 2019-01-04T18:00:00+00:00
+[2020-01-04 18:56:09,989] {standard_task_runner.py:52} INFO - Started process 21871 to run task
+[2020-01-04 18:56:10,264] {logging_mixin.py:112} INFO - [2020-01-04 18:56:10,262] {dagbag.py:403} INFO - Filling up the DagBag from /home/stevo517/web-scraper/airflow-home/dags/my_dag.py
+[2020-01-04 18:56:10,405] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: my_dag.id_scrape 2019-01-04T18:00:00+00:00 [running]> web-scrape-test
+[2020-01-04 18:56:10,482] {python_operator.py:105} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=my_dag
+AIRFLOW_CTX_TASK_ID=id_scrape
+AIRFLOW_CTX_EXECUTION_DATE=2019-01-04T18:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2019-01-04T18:00:00+00:00
+[2020-01-04 18:56:10,483] {taskinstance.py:1088} ERROR - 'function' object has no attribute 'Scrape'
+Traceback (most recent call last):
+  File "/home/stevo517/anaconda3/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 955, in _run_raw_task
+    result = task_copy.execute(context=context)
+  File "/home/stevo517/anaconda3/lib/python3.7/site-packages/airflow/operators/python_operator.py", line 113, in execute
+    return_value = self.execute_callable()
+  File "/home/stevo517/anaconda3/lib/python3.7/site-packages/airflow/operators/python_operator.py", line 118, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "../scrape_for_dag.py", line 4, in scrape
+    my_scrape = scrape.Scrape()
+AttributeError: 'function' object has no attribute 'Scrape'
+[2020-01-04 18:56:10,484] {taskinstance.py:1119} INFO - Marking task as FAILED.
+[2020-01-04 18:56:19,645] {logging_mixin.py:112} INFO - [2020-01-04 18:56:19,645] {local_task_job.py:103} INFO - Task exited with return code 1
